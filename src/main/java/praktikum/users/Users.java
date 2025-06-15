@@ -12,8 +12,8 @@ public class Users {
     @Getter @Setter
     private String name;
 
-    public Users() {
-    }
+    public Users() {}
+
     public Users(String email, String password, String nameUser) {
         this.email = email;
         this.password = password;
