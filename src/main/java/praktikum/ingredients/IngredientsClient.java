@@ -2,7 +2,6 @@ package praktikum.ingredients;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
-import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

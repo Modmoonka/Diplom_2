@@ -19,7 +19,7 @@ public class OrderClient {
     }
 
     @Step("Create new order without authorization")
-    public Response createOrderUnauthorized(OrderRequest order) {
+    public Response createOrderUnauthorized(OrderResponse order) {
         return given()
                 .baseUri(BASE_URL)
                 .header("Content-type", "application/json")

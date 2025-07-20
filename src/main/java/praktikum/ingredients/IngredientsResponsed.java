@@ -5,14 +5,19 @@ import lombok.Setter;
 import java.util.List;
 
 public class IngredientsResponsed {
-    public String success;
+    @Setter
+    public boolean success;
     @Getter @Setter
-    public List<Ingredients> massage;
+    public List<Ingredients> data;
 
     public IngredientsResponsed() { }
 
-    public IngredientsResponsed(String success, List<Ingredients> massage) {
+    public IngredientsResponsed(boolean success, List<Ingredients> data) {
         this.success = success;
-        this.massage = massage;
+        this.data = data;
+    }
+
+    public boolean success() {
+        return success;
     }
 }

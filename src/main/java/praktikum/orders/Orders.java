@@ -2,17 +2,16 @@ package praktikum.orders;
 
 import lombok.Getter;
 import lombok.Setter;
-import java.util.List;
+
 
 public class Orders {
-    @Getter
-    @Setter
-    List<String> ingredients;
+    @Getter @Setter
+    private int number;
 
-    public Orders () {
+    public Orders(){
     }
 
-    public Orders(List<String> ingredients) {
-        this.ingredients = ingredients;
+    public Orders(int number) {
+        this.number = number;
     }
 }

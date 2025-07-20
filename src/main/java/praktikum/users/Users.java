@@ -18,14 +18,11 @@ public class Users {
         this.email = email;
         this.password = password;
         this.name = nameUser;
-}
-    public Users(String email, String password) {
-        this.email = email;
-        this.password = password;
     }
 
     public static Users random() {
         int suffix = ThreadLocalRandom.current().nextInt(100, 100_000);
         return new Users("Jack" + suffix + "@ya.ru", "P@ssw0rd123", "Sparrow");
     }
+
 }
