@@ -1,11 +1,11 @@
 package praktikum.order;
 /*
 Создание заказа:
-с авторизацией,
-без авторизации,
-с ингредиентами,
-без ингредиентов,
-с неверным хешем ингредиентов.
+-с авторизацией,
+-без авторизации,
+-с ингредиентами,
+-без ингредиентов,
+-с неверным хешем ингредиентов.
  * */
 
 import io.qameta.allure.junit4.DisplayName;
@@ -67,7 +67,7 @@ public class CreateOrderTest {
         OrderRequest order = new OrderRequest(orderIngredients);
         Response response = orderClient
                 .createOrder(order, "");
-        OrderResponse orderResponse = response.as(OrderResponse.class);
+        OrderResponse orderResponse = response.as-(OrderResponse.class);
         assertEquals("Incorrect statusCode", SC_OK, response.statusCode());
         assertTrue("Incorrect field success", orderResponse.isSuccess());
     }
