@@ -4,23 +4,22 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class Ingredients {
-    @Getter
-    @Setter
+    @Getter @Setter
     String _id;
     @Getter @Setter
     String name;
     @Getter @Setter
     String type;
     @Getter @Setter
-    String proteins;
+    float proteins;
     @Getter @Setter
-    String fat;
+    float fat;
     @Getter @Setter
-    String carbohydrates;
+    float carbohydrates;
     @Getter @Setter
-    String calories;
+    float calories;
     @Getter @Setter
-    String price;
+    float price;
     @Getter @Setter
     String image;
     @Getter @Setter
@@ -28,14 +27,13 @@ public class Ingredients {
     @Getter @Setter
     String image_large;
     @Getter @Setter
-    String __v;
+    int __v;
 
-    public Ingredients() {
-    }
+    public Ingredients() {}
 
-    public Ingredients(String id, String name, String type, String proteins, String fat,
-                      String carbohydrates, String calories, String price, String image,
-                      String image_mobile, String image_large, String __v) {
+    public Ingredients(String id, String name, String type, float proteins, float fat,
+                      float carbohydrates, float calories, float price, String image,
+                      String image_mobile, String image_large, int __v) {
         this._id = id;
         this.name = name;
         this.type = type;

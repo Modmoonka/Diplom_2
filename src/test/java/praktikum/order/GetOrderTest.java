@@ -6,7 +6,6 @@ package praktikum.order;
 -неавторизованный пользователь.
  * */
 
-import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.After;
@@ -16,14 +15,14 @@ import praktikum.ingredients.Ingredients;
 import praktikum.ingredients.IngredientsClient;
 import praktikum.ingredients.IngredientsResponsed;
 import praktikum.orders.OrderClient;
+import praktikum.orders.OrderListResponse;
 import praktikum.orders.OrderRequest;
 import praktikum.users.UserClient;
 import praktikum.users.UserResponsed;
 import praktikum.users.Users;
-
 import java.util.List;
-
-import static org.apache.http.HttpStatus.SC_OK;
+import static org.apache.http.HttpStatus.*;
+import static org.junit.Assert.*;
 
 public class GetOrderTest {
     private UserClient userClient;
@@ -46,7 +45,7 @@ public class GetOrderTest {
 
         IngredientsResponsed ingredientsResponse = ingredientsClient.getAllIngredients()
                 .then().statusCode(SC_OK).extract().as(IngredientsResponsed.class);
-        ingredients = ingredientsResponse.getMassage();
+        ingredients = ingredientsResponse.getData();
 
         List<String> orderIngredients = ingredientsClient.getRandomIngredients(ingredients, 3);
         OrderRequest order = new OrderRequest(orderIngredients);
@@ -62,30 +61,22 @@ public class GetOrderTest {
     }
 
     @Test
-    @DisplayName("Получение списка заказов пользователя. С авторизацией")
-    public void getUserOrdersWithToken() {
-        Response response = orderClient
-                .getUserOrders(accessToken);
-        OrderListResponse orderListResponse = response.as(OrderListResponse.class);
-
-        assertEquals("Некорректный код ответа", SC_OK, response.statusCode());
-        assertTrue("Некорректное поле success", orderListResponse.isSuccess());
-        assertNotNull("Список заказов не должен быть пуст", orderListResponse.getOrders());
-
+    @DisplayName("Getting orders with authorization")
+    public void getOrdersWithAutorithation() {
+        Response response = orderClient.getUserOrders(accessToken);
+        OrderListResponse OrderListResponse = response.as(OrderListResponse.class);
+        assertEquals("Incorrect statusCode", SC_OK, response.statusCode());
+        assertTrue("Incorrect field success", OrderListResponse.isSuccess());
+        assertNotNull("The order list must not be empty", OrderListResponse.getOrders());
     }
 
     @Test
-    @DisplayName("Получение списка заказов пользователя. Без авторизации")
-    @Description("Тест проверяет что неавториованный пользователь не может получить список заказов")
-    public void getUserOrdersWithoutToken() {
-        Response response = orderClient
-                .getUserOrders("");
-        OrderListResponse orderListResponse = response.as(OrderListResponse.class);
-
-        assertEquals("Некорректный код ответа", SC_UNAUTHORIZED, response.statusCode());
-        assertFalse("Некорректное поле success", orderListResponse.isSuccess());
-        assertEquals("Некорректное сообщение об ошибке", "You should be authorised", orderListResponse.getMessage());
-
+    @DisplayName("Getting a list of orders without authorization")
+    public void getOrdersWithoutAutorithation() {
+        Response response = orderClient.getUserOrders("");
+        OrderListResponse OrderListResponse = response.as(OrderListResponse.class);
+        assertEquals("Incorrect statusCode", SC_UNAUTHORIZED, response.statusCode());
+        assertFalse("Incorrect field success", OrderListResponse.isSuccess());
+        assertEquals("Incorrect error message", "You should be authorised", OrderListResponse.getMessage());
     }
-
 }

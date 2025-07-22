@@ -16,9 +16,7 @@ import org.junit.Test;
 import praktikum.ingredients.Ingredients;
 import praktikum.ingredients.IngredientsClient;
 import praktikum.ingredients.IngredientsResponsed;
-import praktikum.orders.OrderClient;
-import praktikum.orders.OrderRequest;
-import praktikum.orders.OrderResponse;
+import praktikum.orders.*;
 import praktikum.users.UserClient;
 import praktikum.users.UserResponsed;
 import praktikum.users.Users;
@@ -35,7 +33,7 @@ public class CreateOrderTest {
     private Users user;
     private IngredientsClient ingredientsClient;
     private OrderClient orderClient;
-    private List<Ingredients> ingredients;
+    private List<Ingredients> ingredient;
 
     @Before
     public void setUp() {
@@ -50,7 +48,7 @@ public class CreateOrderTest {
 
         IngredientsResponsed ingredientsResponse = ingredientsClient.getAllIngredients()
                 .then().statusCode(SC_OK).extract().as(IngredientsResponsed.class);
-        ingredients = ingredientsResponse.getData();
+        ingredient = ingredientsResponse.getData();
     }
 
     @After
@@ -63,22 +61,21 @@ public class CreateOrderTest {
     @Test
     @DisplayName("Create new order with ingredients and autorization")
     public void createOrderWithAutorithation() {
-        List<String> orderIngredients = ingredientsClient.getRandomIngredients(ingredients, 3);
-        OrderRequest order = new OrderRequest(orderIngredients);
-        Response response = orderClient
-                .createOrder(order, "");
-        OrderResponse orderResponse = response.as-(OrderResponse.class);
+        List<String> ingredients = ingredientsClient.getRandomIngredients(ingredient, 3);
+        OrderRequest orderIngredients = new OrderRequest(ingredients);
+        Response response = orderClient.createOrder(orderIngredients, accessToken);
+        OrderResponse orderResponse = response.as(OrderResponse.class);
         assertEquals("Incorrect statusCode", SC_OK, response.statusCode());
         assertTrue("Incorrect field success", orderResponse.isSuccess());
     }
 
+
     @Test
     @DisplayName("Create new order with autorization without ingredients")
     public void createOrderWithoutIngredients() {
-        List<String> orderIngredients = ingredientsClient.getRandomIngredients(ingredients, 0);
+        List<String> orderIngredients = ingredientsClient.getRandomIngredients(ingredient, 0);
         OrderRequest order = new OrderRequest(orderIngredients);
-        Response response = orderClient
-                .createOrder(order, accessToken);
+        Response response = orderClient.createOrder(order, accessToken);
         OrderResponse orderResponse = response.as(OrderResponse.class);
         assertEquals("Incorrect statusCode", SC_BAD_REQUEST, response.statusCode());
         assertFalse("Incorrect field success", orderResponse.isSuccess());
@@ -98,7 +95,7 @@ public class CreateOrderTest {
     @Test
     @DisplayName("Create new order without autorization")
     public void createOrderwithoutAutorization() {
-        List<String> orderIngredients = ingredientsClient.getRandomIngredients(ingredients, 3);
+        List<String> orderIngredients = ingredientsClient.getRandomIngredients(ingredient, 3);
         OrderRequest order = new OrderRequest(orderIngredients);
         Response response = orderClient
                 .createOrder(order, "");
@@ -110,7 +107,7 @@ public class CreateOrderTest {
     @Test
     @DisplayName("Create new order without autorization")
     public void createOrderwithoutAutorizationAndIngredients() {
-        List<String> orderIngredients = ingredientsClient.getRandomIngredients(ingredients, 0);
+        List<String> orderIngredients = ingredientsClient.getRandomIngredients(ingredient, 0);
         OrderRequest order = new OrderRequest(orderIngredients);
         Response response = orderClient
                 .createOrder(order, "");

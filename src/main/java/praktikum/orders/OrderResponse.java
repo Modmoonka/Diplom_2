@@ -2,6 +2,7 @@ package praktikum.orders;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import java.util.List;
 
 public class OrderResponse {
@@ -13,11 +14,19 @@ public class OrderResponse {
     private boolean success;
     @Getter @Setter
     private String message;
-    @Getter @Setter
-    private int number;
 
+    public OrderResponse() {}
 
-    public boolean isSuccess() {
-        return success;
+    public OrderResponse(String name, Orders order, boolean success) {
+        this.success = success;
+        this.order = order;
+        this.name = name;
+    }
+
+    public OrderResponse(boolean success, String message) {
+        this.success = success;
+        this.message = message;
     }
 }
+
+

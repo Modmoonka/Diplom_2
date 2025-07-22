@@ -5,7 +5,7 @@ import lombok.Setter;
 import java.util.List;
 
 public class IngredientsResponsed {
-    @Setter
+    @Getter @Setter
     public boolean success;
     @Getter @Setter
     public List<Ingredients> data;
@@ -15,9 +15,5 @@ public class IngredientsResponsed {
     public IngredientsResponsed(boolean success, List<Ingredients> data) {
         this.success = success;
         this.data = data;
-    }
-
-    public boolean success() {
-        return success;
     }
 }

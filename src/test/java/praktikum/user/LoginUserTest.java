@@ -30,7 +30,6 @@ public class LoginUserTest {
         Response responseRegister = userClient.register(user);
     }
 
-
     @After
     public void tearDown() {
         if (accessToken != null) {

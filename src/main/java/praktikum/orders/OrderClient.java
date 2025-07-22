@@ -18,16 +18,6 @@ public class OrderClient {
                 .post(URL_ORDERS);
     }
 
-    @Step("Create new order without authorization")
-    public Response createOrderUnauthorized(OrderResponse order) {
-        return given()
-                .baseUri(BASE_URL)
-                .header("Content-type", "application/json")
-                .body(order)
-                .when()
-                .post(URL_ORDERS);
-    }
-
     @Step("Get user orders")
     public Response getUserOrders(String accessToken) {
         return given()

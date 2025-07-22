@@ -15,8 +15,7 @@ public class UserResponsed {
     @Getter @Setter
     private String message;
 
-    public UserResponsed() {
-    }
+    public UserResponsed() {}
 
     public UserResponsed(boolean success, Users user, String accessToken, String refreshToken) {
         this.success = success;
@@ -28,9 +27,5 @@ public class UserResponsed {
     public UserResponsed(boolean success, String message) {
         this.success = success;
         this.message = message;
-    }
-
-    public boolean isSuccess() {
-        return success;
     }
 }

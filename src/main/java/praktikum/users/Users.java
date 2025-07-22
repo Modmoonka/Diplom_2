@@ -24,5 +24,4 @@ public class Users {
         int suffix = ThreadLocalRandom.current().nextInt(100, 100_000);
         return new Users("Jack" + suffix + "@ya.ru", "P@ssw0rd123", "Sparrow");
     }
-
 }
