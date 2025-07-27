@@ -1,32 +1,20 @@
 package praktikum.ingredients;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
+@Data
 public class Ingredients {
-    @Getter @Setter
     String _id;
-    @Getter @Setter
     String name;
-    @Getter @Setter
     String type;
-    @Getter @Setter
     float proteins;
-    @Getter @Setter
     float fat;
-    @Getter @Setter
     float carbohydrates;
-    @Getter @Setter
     float calories;
-    @Getter @Setter
     float price;
-    @Getter @Setter
     String image;
-    @Getter @Setter
     String image_mobile;
-    @Getter @Setter
     String image_large;
-    @Getter @Setter
     int __v;
 
     public Ingredients() {}

@@ -1,12 +1,10 @@
 package praktikum.orders;
 
-import lombok.Getter;
-import lombok.Setter;
-
+import lombok.Data;
 import java.util.List;
 
+@Data
 public class OrderRequest {
-    @Getter @Setter
     private List<String> ingredients;
 
     public OrderRequest() {}

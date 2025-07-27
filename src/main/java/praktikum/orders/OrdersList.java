@@ -1,23 +1,16 @@
 package praktikum.orders;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import java.util.List;
 
+@Data
 public class OrdersList {
-    @Getter @Setter
     String _id;
-    @Getter @Setter
     List<String> ingredients;
-    @Getter @Setter
     String status;
-    @Getter @Setter
     String name;
-    @Getter @Setter
     private int number;
-    @Getter @Setter
     private String createdAt;
-    @Getter @Setter
     private String updatedAt;
 
     public OrdersList(){}

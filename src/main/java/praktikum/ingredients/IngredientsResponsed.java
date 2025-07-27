@@ -1,15 +1,12 @@
 package praktikum.ingredients;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import java.util.List;
 
+@Data
 public class IngredientsResponsed {
-    @Getter @Setter
     public boolean success;
-    @Getter @Setter
     public List<Ingredients> data;
-
     public IngredientsResponsed() { }
 
     public IngredientsResponsed(boolean success, List<Ingredients> data) {

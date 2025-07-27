@@ -1,15 +1,12 @@
 package praktikum.users;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import java.util.concurrent.ThreadLocalRandom;
 
+@Data
 public class Users {
-    @Getter @Setter
     private String email;
-    @Getter @Setter
     private String password;
-    @Getter @Setter
     private String name;
 
     public Users() {}
